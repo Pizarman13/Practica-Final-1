@@ -24,7 +24,7 @@ public class PoblacionBacterias {
         this.luminosidad = luminosidad;
     }
 
-    
+
 
 
 }
