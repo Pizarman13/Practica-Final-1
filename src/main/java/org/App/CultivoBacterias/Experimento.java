@@ -72,4 +72,13 @@ public class Experimento {
         }
     }
 
+    public void crearPoblacionBacterias(String nombrePoblacion, String fechaInicio, int numInicialBacterias, double temperatura, String luminosidad) {
+
+    }
+
+    public void borrarPoblacionBacterias(String nombrePoblacion) {
+
+    }
+
+    
 }
