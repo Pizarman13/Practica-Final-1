@@ -15,13 +15,27 @@ public class Experimento {
     }
 
     public void agregarComida(int dia, int cantidad) {
-        if (dia > 0 && dia < 30) {
+        if (dia > 1 && dia < 30) {
 
-            for (int i = 0; i < cantidadComida.length; i++) {
+            for (int i = 0; i < dia; i++) {
                 cantidadComida[i] = dia*4 + cantidad;
 
                 if (cantidadComida[i] > maxComida) {
                     cantidadComida[i] = maxComida;
+                }
+            }
+
+        }
+    }
+
+    public void quitarComida(int dia, int cantidad) {
+        if (dia > 1 && dia < 30) {
+
+            for (int i = dia; i < cantidadComida.length; i++) {
+                cantidadComida[i] = dia*4 - cantidad;
+
+                if (cantidadComida[i] < 0) {
+                    cantidadComida[i] = 0;
                 }
             }
 
