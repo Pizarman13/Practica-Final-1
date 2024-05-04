@@ -1,6 +1,7 @@
 package org.App;
 
 import java.util.Scanner;
+import org.App.CultivoBacterias.*;
 
 //TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
@@ -58,5 +59,11 @@ public class Main {
             }
 
         }
+    }
+
+    public static void crearPoblacionBacterias() {
+
+
+
     }
 }

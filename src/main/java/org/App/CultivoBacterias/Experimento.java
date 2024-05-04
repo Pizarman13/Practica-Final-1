@@ -5,10 +5,10 @@ public class Experimento {
     int idExperimento;
     int maxComida = 300;
     int[] cantidadComida = new int[30];
-    PoblacionBacterias poblacionBacteriana;
+    PoblacionBacterias[] poblacionBacteriana;
     String nombreArchivo;
 
-    public Experimento(int idExperimento, PoblacionBacterias poblacionBacteriana, String nombreArchivo) {
+    public Experimento(int idExperimento, PoblacionBacterias[] poblacionBacteriana, String nombreArchivo) {
         this.idExperimento = idExperimento;
         this.poblacionBacteriana = poblacionBacteriana;
         this.nombreArchivo = nombreArchivo;
@@ -22,11 +22,11 @@ public class Experimento {
         return idExperimento;
     }
 
-    public void setPoblacionBacteriana(PoblacionBacterias poblacionBacteriana) {
+    public void setPoblacionBacteriana(PoblacionBacterias[] poblacionBacteriana) {
         this.poblacionBacteriana = poblacionBacteriana;
     }
 
-    public PoblacionBacterias getPoblacionBacteriana() {
+    public PoblacionBacterias[] getPoblacionBacteriana() {
         return poblacionBacteriana;
     }
 
