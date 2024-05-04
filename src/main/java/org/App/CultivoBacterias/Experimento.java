@@ -14,25 +14,55 @@ public class Experimento {
         this.nombreArchivo = nombreArchivo;
     }
 
-    public void agregarComida(int dia, int cantidad) {
+    public void setIdExperimento(int idExperimento) {
+        this.idExperimento = idExperimento;
+    }
+
+    public int getIdExperimento() {
+        return idExperimento;
+    }
+
+    public void setPoblacionBacteriana(PoblacionBacterias poblacionBacteriana) {
+        this.poblacionBacteriana = poblacionBacteriana;
+    }
+
+    public PoblacionBacterias getPoblacionBacteriana() {
+        return poblacionBacteriana;
+    }
+
+    public void setNombreArchivo(String nombreArchivo) {
+        this.nombreArchivo = nombreArchivo;
+    }
+
+    public String getNombreArchivo() {
+        return nombreArchivo;
+    }
+
+    public void setCantidadComida(int[] cantidadComida) {
+        this.cantidadComida = cantidadComida;
+    }
+
+    public int[] getCantidadComida() {
+        return cantidadComida;
+    }
+
+    public int getMaxComida() {
+        return maxComida;
+    }
+
+    public void regulacionLinealComida(int dia) {
         if (dia > 1 && dia < 30) {
 
             for (int i = 0; i < dia; i++) {
-                cantidadComida[i] = dia*4 + cantidad;
+                cantidadComida[i] = dia*4 + 40;
 
                 if (cantidadComida[i] > maxComida) {
                     cantidadComida[i] = maxComida;
                 }
             }
 
-        }
-    }
-
-    public void quitarComida(int dia, int cantidad) {
-        if (dia > 1 && dia < 30) {
-
             for (int i = dia; i < cantidadComida.length; i++) {
-                cantidadComida[i] = dia*4 - cantidad;
+                cantidadComida[i] = dia*4 - 20;
 
                 if (cantidadComida[i] < 0) {
                     cantidadComida[i] = 0;
@@ -41,7 +71,5 @@ public class Experimento {
 
         }
     }
-
-
 
 }
