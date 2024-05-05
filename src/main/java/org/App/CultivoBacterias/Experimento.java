@@ -19,7 +19,7 @@ public class Experimento implements Serializable{
         if (dia > 1 && dia < 30) {
 
             for (int i = 0; i < dia; i++) {
-                cantidadComida[i] = dia*4 + 40;
+                cantidadComida[i] = i*4 + 40;
 
                 if (cantidadComida[i] > maxComida) {
                     cantidadComida[i] = maxComida;
@@ -27,7 +27,7 @@ public class Experimento implements Serializable{
             }
 
             for (int i = dia; i < cantidadComida.length; i++) {
-                cantidadComida[i] = dia*4 - 20;
+                cantidadComida[i] = i*4 - 20;
 
                 if (cantidadComida[i] < 0) {
                     cantidadComida[i] = 0;
