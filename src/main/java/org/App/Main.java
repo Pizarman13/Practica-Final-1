@@ -26,13 +26,14 @@ public class Main {
                     case "1":
                         System.out.println("Introduzca el nombre del archivo que desea abrir: ");
                         String nombreArchivo = sc.nextLine();
-                        abrirExperimento(nombreArchivo);
+                        Experimento experimento = Experimento.cargarExperimento(nombreArchivo);
+                        abrirExperimento(experimento);
                         break;
                     case "2":
                         System.out.println("Introduzca el nombre del experimento que desea crear: ");
                         String nombreArchivoEx = sc.nextLine();
-                        ManejoArchivo.crearArchivo(nombreArchivoEx);
-                        abrirExperimento(nombreArchivoEx);
+                        Experimento nuevoExperimento = new Experimento(147, new PoblacionBacterias[0]);
+                        abrirExperimento(nuevoExperimento);
                         break;
                     case "0":
                         System.out.println("Saliendo...");
@@ -46,11 +47,9 @@ public class Main {
         }
     }
 
-    public static void abrirExperimento(String nombreArchivo) {
+    public static void abrirExperimento(Experimento experimento) {
 
-        Experimento experimento = new Experimento(1, new PoblacionBacterias[3], nombreArchivo);
-
-        while(true) {
+       while(true) {
             System.out.println("1. Crear una nueva población de bacterias y  añadirla a este experimento");
             System.out.println("2. Borrar una población de bacterias de este experimento");
             System.out.println("3. Visalizar los nombres de las poblaciones de bacterias de este experimento");
@@ -74,12 +73,14 @@ public class Main {
                     int numInicialBacterias = sc.nextInt();
                     System.out.println("Introduzca la temperatura: ");
                     double temperatura = sc.nextDouble();
+                    sc.nextLine();
                     System.out.println("Introduzca la luminosidad: ");
                     System.out.println("1. Alta");
                     System.out.println("2. Media");
                     System.out.println("3. Baja");
+                    String num = sc.nextLine();
                     PoblacionBacterias.Luminosidad luminosidad;
-                    switch (sc.nextLine()) {
+                    switch (num) {
                         case "1":
                             luminosidad = PoblacionBacterias.Luminosidad.Alta;
                             break;
@@ -102,6 +103,7 @@ public class Main {
                     experimento.borrarPoblacionBacterias(nombrePoblacionBorrar);
                     break;
                 case "3":
+                    System.out.println("Nombres de las poblaciones de bacterias de este experimento: ");
                     experimento.visualizarNombresPoblaciones();
                     break;
                 case "4":
@@ -113,9 +115,9 @@ public class Main {
                     experimento.guardarExperimento();
                     break;
                 case "6":
-                    System.out.println("Introduzca el nombre del archivo en el que desea guardar el experimento: ");
+                    System.out.println("Introduzca el nombre del archivo en el que desea guardar el experimento \n(recomiendo que nombre su archivo con experimetos/... para que su archivo se guarde en la carpeta experimentos): ");
                     String nombreArchivoGuardar = sc.nextLine();
-                    experimento.guardarExperimentoComo();
+                    experimento.guardarExperimentoComo(nombreArchivoGuardar);
                     break;
                 case "7":
                     System.out.println("Saliendo...");

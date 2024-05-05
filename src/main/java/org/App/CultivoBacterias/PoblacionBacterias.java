@@ -11,7 +11,7 @@ public class PoblacionBacterias {
 
     String nombre;
     LocalDate fechaInicio;
-    LocalDate fechaFin = fechaInicio.plusDays(30);
+    LocalDate fechaFin;
     int numInicialBacterias;
     double temperatura;
     Luminosidad luminosidad;
@@ -22,6 +22,7 @@ public class PoblacionBacterias {
         this.numInicialBacterias = numInicialBacterias;
         this.temperatura = temperatura;
         this.luminosidad = luminosidad;
+        this.fechaFin = fechaInicio.plusDays(30);
     }
 
     public void setFechaFin(LocalDate fechaFin) {

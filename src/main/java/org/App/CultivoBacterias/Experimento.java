@@ -1,8 +1,9 @@
 package org.App.CultivoBacterias;
 
+import java.io.*;
 import java.time.LocalDate;
 
-public class Experimento {
+public class Experimento implements Serializable{
 
     int idExperimento;
     int maxComida = 300;
@@ -10,10 +11,9 @@ public class Experimento {
     PoblacionBacterias[] poblacionBacteriana;
     String nombreArchivo;
 
-    public Experimento(int idExperimento, PoblacionBacterias[] poblacionBacteriana, String nombreArchivo) {
+    public Experimento(int idExperimento, PoblacionBacterias[] poblacionBacteriana) {
         this.idExperimento = idExperimento;
         this.poblacionBacteriana = poblacionBacteriana;
-        this.nombreArchivo = nombreArchivo;
     }
 
     public void setIdExperimento(int idExperimento) {
@@ -127,12 +127,31 @@ public class Experimento {
         }
     }
 
+    // Manejo archivos
     public void guardarExperimento() {
+        if (nombreArchivo == null) {
+            System.out.println("El nombre del archivo no puede ser nulo");
+        }
 
+        try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(this.nombreArchivo))) {
+            oos.writeObject(this);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
-    public void guardarExperimentoComo() {
+    public void guardarExperimentoComo(String nombreArchivo) {
+        this.nombreArchivo = nombreArchivo;
+        guardarExperimento();
+    }
 
+    public static Experimento cargarExperimento(String nombreArchivo) {
+        try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(nombreArchivo))) {
+            return (Experimento) ois.readObject();
+        } catch (IOException | ClassNotFoundException e) {
+            e.printStackTrace();
+            return null;
+        }
     }
 
 }
