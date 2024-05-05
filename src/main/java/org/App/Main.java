@@ -49,6 +49,11 @@ public class Main {
 
     public static void abrirExperimento(Experimento experimento) {
 
+        System.out.println("Escoja el dia a partir del cual dejara de incrementarse la comida y empezara a disminuir: ");
+        int dia = sc.nextInt();
+        experimento.regulacionLinealComida(dia);
+
+
        while(true) {
             System.out.println("1. Crear una nueva población de bacterias y  añadirla a este experimento");
             System.out.println("2. Borrar una población de bacterias de este experimento");
@@ -56,7 +61,8 @@ public class Main {
             System.out.println("4. Ver informacion detallada de una población de bacterias de este experimento");
             System.out.println("5. Guardar el experimento");
             System.out.println("6. Guardar el experimento como");
-            System.out.println("7. Salir");
+            System.out.println("7. Ver la cantidad de comida para cada día del experimento");
+            System.out.println("8. Salir");
 
             System.out.print("Ingrese una opcion: ");
             String opcion = sc.nextLine();
@@ -120,6 +126,9 @@ public class Main {
                     experimento.guardarExperimentoComo(nombreArchivoGuardar);
                     break;
                 case "7":
+                    experimento.visualizarComida();
+                    break;
+                case "8":
                     System.out.println("Saliendo...");
                     System.exit(0);
                     break;
