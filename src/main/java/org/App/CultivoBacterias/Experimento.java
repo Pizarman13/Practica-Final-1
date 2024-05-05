@@ -1,5 +1,7 @@
 package org.App.CultivoBacterias;
 
+import java.time.LocalDate;
+
 public class Experimento {
 
     int idExperimento;
@@ -72,39 +74,57 @@ public class Experimento {
         }
     }
 
-    public void crearPoblacionBacterias(String nombrePoblacion, String fechaInicio, int numInicialBacterias, double temperatura, String luminosidad) {
-        PoblacionBacterias poblacionBacterias = new PoblacionBacterias(nombrePoblacion, fechaInicio, numInicialBacterias, temperatura, luminosidad);
+    public void anadirPoblacionBacterias(PoblacionBacterias poblacionBacterias) {
         PoblacionBacterias[] poblacionBacteriasAux = new PoblacionBacterias[poblacionBacteriana.length + 1];
 
         for (int i = 0; i < poblacionBacteriana.length; i++) {
             poblacionBacteriasAux[i] = poblacionBacteriana[i];
         }
 
-        poblacionBacteriasAux[poblacionBacteriasAux.length - 1] = poblacionBacterias;
+        poblacionBacteriasAux[poblacionBacteriana.length] = poblacionBacterias;
         poblacionBacteriana = poblacionBacteriasAux;
 
     }
 
-    public void borrarPoblacionBacterias(PoblacionBacterias[] poblacionBacterias, String nombrePoblacion) {
-        PoblacionBacterias[] poblacionBacteriasAux = new PoblacionBacterias[poblacionBacterias.length - 1];
-        int j = 0;
+    public void borrarPoblacionBacterias(String nombrePoblacion) {
 
-        for (int i = 0; i < poblacionBacterias.length; i++) {
-            if (!poblacionBacterias[i].nombre.equals(nombrePoblacion)) {
-                poblacionBacteriasAux[j] = poblacionBacterias[i];
-                j++;
+        for (int i = 0; i < poblacionBacteriana.length; i++) {
+            if (poblacionBacteriana[i].nombre.equals(nombrePoblacion)) {
+                PoblacionBacterias[] poblacionBacteriasAux = new PoblacionBacterias[poblacionBacteriana.length - 1];
+                int j = 0;
+                for (int k = 0; k < poblacionBacteriana.length; k++) {
+                    if (k != i) {
+                        poblacionBacteriasAux[j] = poblacionBacteriana[k];
+                        j++;
+                    }
+                }
+                poblacionBacteriana = poblacionBacteriasAux;
+            } else {
+                System.out.println("No se encontró la población de bacterias con el nombre " + nombrePoblacion);
             }
         }
-
-        poblacionBacterias = poblacionBacteriasAux;
-
     }
 
-    public void visualizarNombresPoblaciones(PoblacionBacterias[] poblacionBacterias) {
-        for (int i = 0; i < poblacionBacterias.length; i++) {
-            System.out.println(poblacionBacterias[i].nombre);
+    public void visualizarNombresPoblaciones() {
+        for (int i = 0; i < poblacionBacteriana.length; i++) {
+            System.out.println(poblacionBacteriana[i].nombre);
         }
+    }
 
+
+    public void verDetallesPoblacion(String nombrePoblacion) {
+        for (int i = 0; i < poblacionBacteriana.length; i++) {
+            if (poblacionBacteriana[i].nombre.equals(nombrePoblacion)) {
+                System.out.println("Nombre: " + poblacionBacteriana[i].nombre);
+                System.out.println("Fecha de inicio: " + poblacionBacteriana[i].fechaInicio);
+                System.out.println("Número inicial de bacterias: " + poblacionBacteriana[i].numInicialBacterias);
+                System.out.println("Temperatura: " + poblacionBacteriana[i].temperatura);
+                System.out.println("Luminosidad: " + poblacionBacteriana[i].luminosidad);
+                System.out.println("Fecha de fin: " + poblacionBacteriana[i].fechaFin);
+            } else {
+                System.out.println("No se encontró la población de bacterias con el nombre " + nombrePoblacion);
+            }
+        }
     }
 
     public void guardarExperimento() {
@@ -114,19 +134,5 @@ public class Experimento {
     public void guardarExperimentoComo() {
 
     }
-
-    public void verDetallesPoblacion(PoblacionBacterias[] poblacionBacteriana, String nombrePoblacion) {
-        for (int i = 0; i < poblacionBacteriana.length; i++) {
-            if (poblacionBacteriana[i].nombre.equals(nombrePoblacion)) {
-                System.out.println("Nombre: " + poblacionBacteriana[i].nombre);
-                System.out.println("Fecha de inicio: " + poblacionBacteriana[i].fechaInicio);
-                System.out.println("Número inicial de bacterias: " + poblacionBacteriana[i].numInicialBacterias);
-                System.out.println("Temperatura: " + poblacionBacteriana[i].temperatura);
-                System.out.println("Luminosidad: " + poblacionBacteriana[i].luminosidad);
-            }
-        }
-
-    }
-
 
 }

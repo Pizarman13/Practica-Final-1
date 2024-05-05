@@ -1,8 +1,9 @@
 package org.App;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.Scanner;
 import org.App.CultivoBacterias.*;
-import org.App.ManejoArchivos.*;
 
 //TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
@@ -46,7 +47,6 @@ public class Main {
     }
 
     public static void abrirExperimento(String nombreArchivo) {
-        //ManejoArchivo.leerArchivo(nombreArchivo);
 
         Experimento experimento = new Experimento(1, new PoblacionBacterias[3], nombreArchivo);
 
@@ -66,20 +66,40 @@ public class Main {
                 case "1":
                     System.out.println("Introduzca el nombre de la población de bacterias: ");
                     String nombrePoblacion = sc.nextLine();
-                    System.out.println("Introduzca la fecha de inicio de la población de bacterias: ");
-                    String fechaInicio = sc.nextLine();
+                    System.out.println("Introduzca la fecha de inicio de la población de bacterias (formato fecha aaaa-mm-dd): ");
+                    String fechaInicial = sc.nextLine();
+                    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+                    LocalDate fechaInicio = LocalDate.parse(fechaInicial, formatter);
                     System.out.println("Introduzca el número inicial de bacterias: ");
                     int numInicialBacterias = sc.nextInt();
                     System.out.println("Introduzca la temperatura: ");
                     double temperatura = sc.nextDouble();
                     System.out.println("Introduzca la luminosidad: ");
-                    String luminosidad = sc.nextLine();
-                    experimento.crearPoblacionBacterias(nombrePoblacion, fechaInicio, numInicialBacterias, temperatura, luminosidad);
+                    System.out.println("1. Alta");
+                    System.out.println("2. Media");
+                    System.out.println("3. Baja");
+                    PoblacionBacterias.Luminosidad luminosidad;
+                    switch (sc.nextLine()) {
+                        case "1":
+                            luminosidad = PoblacionBacterias.Luminosidad.Alta;
+                            break;
+                        case "2":
+                            luminosidad = PoblacionBacterias.Luminosidad.Media;
+                            break;
+                        case "3":
+                            luminosidad = PoblacionBacterias.Luminosidad.Baja;
+                            break;
+                        default:
+                            System.out.println("Luminosidad no válida, por defecto se le dara el valor de Media");
+                            luminosidad = PoblacionBacterias.Luminosidad.Media;
+                            break;
+                    }
+                    experimento.anadirPoblacionBacterias(new PoblacionBacterias(nombrePoblacion, fechaInicio, numInicialBacterias, temperatura, luminosidad));
                     break;
                 case "2":
                     System.out.println("Introduzca el nombre de la población de bacterias que desea borrar: ");
                     String nombrePoblacionBorrar = sc.nextLine();
-                    experimento.borrarPoblacionBacterias();
+                    experimento.borrarPoblacionBacterias(nombrePoblacionBorrar);
                     break;
                 case "3":
                     experimento.visualizarNombresPoblaciones();
@@ -87,7 +107,7 @@ public class Main {
                 case "4":
                     System.out.println("Introduzca el nombre de la población de bacterias de la que desea ver información detallada: ");
                     String nombrePoblacionDetalles = sc.nextLine();
-                    experimento.verDetallesPoblacion();
+                    experimento.verDetallesPoblacion(nombrePoblacionDetalles);
                     break;
                 case "5":
                     experimento.guardarExperimento();
