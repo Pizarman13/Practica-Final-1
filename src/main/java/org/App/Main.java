@@ -10,8 +10,6 @@ public class Main {
     static Scanner sc = new Scanner(System.in);
     public static void main(String[] args) {
 
-
-
         // menu
         while(true) {
             System.out.println("1. Abrir un archivo que contenga un experimento");
@@ -81,7 +79,7 @@ public class Main {
                 case "2":
                     System.out.println("Introduzca el nombre de la población de bacterias que desea borrar: ");
                     String nombrePoblacionBorrar = sc.nextLine();
-                    experimento.borrarPoblacionBacterias(nombrePoblacionBorrar);
+                    experimento.borrarPoblacionBacterias();
                     break;
                 case "3":
                     experimento.visualizarNombresPoblaciones();
@@ -89,7 +87,7 @@ public class Main {
                 case "4":
                     System.out.println("Introduzca el nombre de la población de bacterias de la que desea ver información detallada: ");
                     String nombrePoblacionDetalles = sc.nextLine();
-                    experimento.verDetallesPoblacion(nombrePoblacionDetalles);
+                    experimento.verDetallesPoblacion();
                     break;
                 case "5":
                     experimento.guardarExperimento();
@@ -97,7 +95,7 @@ public class Main {
                 case "6":
                     System.out.println("Introduzca el nombre del archivo en el que desea guardar el experimento: ");
                     String nombreArchivoGuardar = sc.nextLine();
-                    experimento.guardarExperimentoComo(nombreArchivoGuardar);
+                    experimento.guardarExperimentoComo();
                     break;
                 case "7":
                     System.out.println("Saliendo...");

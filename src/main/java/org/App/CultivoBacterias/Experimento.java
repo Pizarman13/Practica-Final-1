@@ -73,12 +73,60 @@ public class Experimento {
     }
 
     public void crearPoblacionBacterias(String nombrePoblacion, String fechaInicio, int numInicialBacterias, double temperatura, String luminosidad) {
+        PoblacionBacterias poblacionBacterias = new PoblacionBacterias(nombrePoblacion, fechaInicio, numInicialBacterias, temperatura, luminosidad);
+        PoblacionBacterias[] poblacionBacteriasAux = new PoblacionBacterias[poblacionBacteriana.length + 1];
+
+        for (int i = 0; i < poblacionBacteriana.length; i++) {
+            poblacionBacteriasAux[i] = poblacionBacteriana[i];
+        }
+
+        poblacionBacteriasAux[poblacionBacteriasAux.length - 1] = poblacionBacterias;
+        poblacionBacteriana = poblacionBacteriasAux;
 
     }
 
-    public void borrarPoblacionBacterias(String nombrePoblacion) {
+    public void borrarPoblacionBacterias(PoblacionBacterias[] poblacionBacterias, String nombrePoblacion) {
+        PoblacionBacterias[] poblacionBacteriasAux = new PoblacionBacterias[poblacionBacterias.length - 1];
+        int j = 0;
+
+        for (int i = 0; i < poblacionBacterias.length; i++) {
+            if (!poblacionBacterias[i].nombre.equals(nombrePoblacion)) {
+                poblacionBacteriasAux[j] = poblacionBacterias[i];
+                j++;
+            }
+        }
+
+        poblacionBacterias = poblacionBacteriasAux;
 
     }
 
-    
+    public void visualizarNombresPoblaciones(PoblacionBacterias[] poblacionBacterias) {
+        for (int i = 0; i < poblacionBacterias.length; i++) {
+            System.out.println(poblacionBacterias[i].nombre);
+        }
+
+    }
+
+    public void guardarExperimento() {
+
+    }
+
+    public void guardarExperimentoComo() {
+
+    }
+
+    public void verDetallesPoblacion(PoblacionBacterias[] poblacionBacteriana, String nombrePoblacion) {
+        for (int i = 0; i < poblacionBacteriana.length; i++) {
+            if (poblacionBacteriana[i].nombre.equals(nombrePoblacion)) {
+                System.out.println("Nombre: " + poblacionBacteriana[i].nombre);
+                System.out.println("Fecha de inicio: " + poblacionBacteriana[i].fechaInicio);
+                System.out.println("Número inicial de bacterias: " + poblacionBacteriana[i].numInicialBacterias);
+                System.out.println("Temperatura: " + poblacionBacteriana[i].temperatura);
+                System.out.println("Luminosidad: " + poblacionBacteriana[i].luminosidad);
+            }
+        }
+
+    }
+
+
 }
